@@ -32,7 +32,7 @@
 
 ###
 
-<p align="center">BoNoJiten is a simple and friendly e-commerce website for bicycle lovers.<br>Here, users can buy bicycle spare parts, accessories, and everything related to cycling.<br><br>The name BoNoJiten (僕の自転車) comes from Japanese:<br><br>Bo (僕) = I / My<br><br>No (の) = of<br><br>Jiten (自転車) = Bicycle<br><br>So it means “My Bicycle” <br><br>Hope u like it!!</p>
+<p align="center">BoNoJiten is a simple and friendly e-commerce website for bicycle lovers.<br>Here, users can buy bicycle spare parts, accessories, and everything related to cycling.<br><br>The name BoNoJiten (僕の自転車) comes from Japanese:<br><br>Boku (僕) = I / My<br><br>No (の) = of<br><br>Jitensha (自転車) = Bicycle<br><br>So it means “My Bicycle” <br><br>Hope u like it!!</p>
 
 ###
 
