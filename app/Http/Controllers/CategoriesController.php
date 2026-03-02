@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Credential;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
-class CredentialController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class CredentialController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Credential $credential)
+    public function show(Categories $categories)
     {
         //
     }
@@ -42,7 +42,7 @@ class CredentialController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Credential $credential)
+    public function edit(Categories $categories)
     {
         //
     }
@@ -50,7 +50,7 @@ class CredentialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Credential $credential)
+    public function update(Request $request, Categories $categories)
     {
         //
     }
@@ -58,7 +58,7 @@ class CredentialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Credential $credential)
+    public function destroy(Categories $categories)
     {
         //
     }
