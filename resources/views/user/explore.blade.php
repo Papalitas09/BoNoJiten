@@ -97,8 +97,8 @@
                                 <img src="{{ asset('storage/products/' . $product->image) }}"
                                     class="w-full h-full object-cover">
                             @else
-                                <span class="material-symbols-outlined text-gray-300"
-                                    style="font-size: 3rem;">directions_bike</span>
+                                <img src="{{ asset('storage/mail.jpeg') }}"
+                                    class="w-full h-full object-cover">
                             @endif
 
                             {{-- badges tetap di sini --}}

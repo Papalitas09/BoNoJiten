@@ -6,7 +6,7 @@
     <section class="px-4 py-4">
         <div class="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gray-200">
             <div class="absolute inset-0 bg-cover bg-center"
-                style="background-image: linear-gradient(to right, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.2) 65%), url({{ asset('storage/sepeda.jpeg') }});">
+                style="background-image: linear-gradient(to right, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.2) 65%), url({{ asset('storage/mail.jpeg') }});">
             </div>
             <div class="relative flex h-full flex-col justify-center p-6">
                 <span
@@ -82,13 +82,13 @@
                             @if ($product->image)
                                 <img src="{{ asset('storage/products/' . $product->image) }}" class="w-52 h-full object-cover">
                             @else
-                                <span class="material-symbols-outlined text-gray-300 w-52"
-                                    style="font-size: 3rem;">directions_bike</span>
+                                 <img src="{{ asset('storage/mail.jpeg') }}"
+                                    class="w-full h-full object-cover">
                             @endif
 
                             {{-- badges tetap di sini --}}
                             @if ($product->stock <= 5 && $product->stock > 0)
-                                <span class="absolute top-2 left-2 ...">Low Stock</span>
+                                <span class="absolute top-2 left-2 hover:text-red-600 transition-all cursor-default">Low Stock</span>
                             @endif
 
                             <form action="{{ route('user.favorites.toggle', $product) }}" method="POST"
