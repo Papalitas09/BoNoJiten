@@ -13,6 +13,8 @@ use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\user\OrderController;
 use App\Http\Controllers\user\FavoriteController;
 use App\Http\Controllers\user\ProductController;
+use App\Http\Controllers\CartController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,4 +43,10 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(f
     Route::get('/favorites',           [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('/favorites/{product}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
     Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+    //cart
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update/{item}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{item}', [CartController::class, 'remove'])->name('cart.remove');
 });
