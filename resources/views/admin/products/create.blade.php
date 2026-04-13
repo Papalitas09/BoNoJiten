@@ -96,7 +96,7 @@
                             <option value="" disabled {{ old('categories') ? '' : 'selected' }}>Select category
                             </option>
                             <option value="unit" {{ old('categories') === 'unit' ? 'selected' : '' }}>Unit</option>
-                            <option value="spharepart" {{ old('categories') === 'spharepart' ? 'selected' : '' }}>Sparepart
+                            <option value="sparepart" {{ old('categories') === 'sparepart' ? 'selected' : '' }}>Sparepart
                             </option>
                         </select>
                         @error('categories')
@@ -121,14 +121,39 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Product Image</label>
-                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
-                        name="image" accept="image/*">
-                    @error('image')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                    <small class="text-muted">Format: jpg, png, jpeg, gif. Max 2MB</small>
+                {{-- Images --}}
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="image" class="block text-sm font-medium text-gray-700 mb-1">
+                            Cover Image (Primary)
+                        </label>
+                        <input type="file" class="w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-lg file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-blue-50 file:text-blue-700
+                            hover:file:bg-blue-100 {{ $errors->has('image') ? 'border-red-400 bg-red-50' : '' }}" 
+                            id="image" name="image" accept="image/*">
+                        @error('image')
+                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label for="images" class="block text-sm font-medium text-gray-700 mb-1">
+                            Gallery Images (Multiple)
+                        </label>
+                        <input type="file" class="w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-lg file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-purple-50 file:text-purple-700
+                            hover:file:bg-purple-100" 
+                            id="images" name="images[]" multiple accept="image/*">
+                        @error('images.*')
+                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                        <p class="mt-1 text-xs text-gray-400">Hold Ctrl/Cmd to select multiple files.</p>
+                    </div>
                 </div>
 
             </div>

@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Order;
+use App\Models\Favorite;
 
 class User extends Authenticatable
 {
@@ -48,6 +50,12 @@ class User extends Authenticatable
     }
 
     public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    // Alias so both order() and orders() work
+    public function orders()
     {
         return $this->hasMany(Order::class);
     }

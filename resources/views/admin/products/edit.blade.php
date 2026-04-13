@@ -96,8 +96,8 @@
                             <option value="unit"
                                 {{ old('categories', $product->categories) === 'unit' ? 'selected' : '' }}>Unit
                             </option>
-                            <option value="spharepart"
-                                {{ old('categories', $product->categories) === 'spharepart' ? 'selected' : '' }}>Sparepart
+                            <option value="sparepart"
+                                {{ old('categories', $product->categories) === 'sparepart' ? 'selected' : '' }}>Sparepart
                             </option>
                         </select>
                         @error('categories')
@@ -123,22 +123,67 @@
                             <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Product Image</label>
+                    {{-- Images --}}
+                </div>
+                
+                <div class="space-y-4 pt-4 border-t border-gray-100">
+                    <h3 class="text-sm font-bold text-gray-800">Media & Images</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        {{-- Cover Image --}}
+                        <div class="bg-blue-50 border border-blue-100 p-4 rounded-xl">
+                            <label for="image" class="block text-sm font-medium text-blue-900 mb-2">
+                                Cover Image (Primary)
+                            </label>
+                            
+                            @if (isset($product) && $product->image)
+                                <div class="mb-3">
+                                    <div class="w-24 h-24 rounded-lg overflow-hidden border border-blue-200">
+                                        <img src="{{ asset('storage/products/' . $product->image) }}" alt="Current image"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            @endif
 
-                        @if (isset($product) && $product->image)
-                            <div class="mb-2">
-                                <img src="{{ asset('storage/products/' . $product->image) }}" alt="Current image"
-                                    style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
-                            </div>
-                        @endif
+                            <input type="file" class="w-full text-sm text-blue-700
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-lg file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-white file:text-blue-700
+                                hover:file:bg-blue-50" 
+                                id="image" name="image" accept="image/*">
+                            @error('image')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
-                            name="image" accept="image/*">
-                        @error('image')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                        <small class="text-muted">Format: jpg, png, jpeg, gif. Max 2MB</small>
+                        {{-- Gallery Images --}}
+                        <div class="bg-purple-50 border border-purple-100 p-4 rounded-xl">
+                            <label for="images" class="block text-sm font-medium text-purple-900 mb-2">
+                                Add Gallery Images (Multiple)
+                            </label>
+                            
+                            @if (isset($product) && $product->images->isNotEmpty())
+                                <div class="mb-3 flex flex-wrap gap-2">
+                                    @foreach($product->images as $img)
+                                        <div class="w-16 h-16 rounded-md overflow-hidden border border-purple-200 relative group">
+                                            <img src="{{ asset('storage/products/' . $img->image_path) }}" alt="Gallery" class="w-full h-full object-cover">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <input type="file" class="w-full text-sm text-purple-700
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-lg file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-white file:text-purple-700
+                                hover:file:bg-purple-50" 
+                                id="images" name="images[]" multiple accept="image/*">
+                            @error('images.*')
+                                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-1 text-xs text-purple-400">Appending new images. Existing images stay.</p>
+                        </div>
                     </div>
                 </div>
 

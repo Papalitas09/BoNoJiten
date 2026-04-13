@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,35 +30,31 @@ class ProductsController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:available,unavailable',
-            'categories' => 'required|in:unit,spharepart',
+            'categories' => 'required|in:unit,sparepart',
         ]);
 
-        $data = $request->except('image');
+        $data = $request->except(['image', 'images']);
 
-        // Handle file upload dengan BENAR
+        // Handle cover image
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-
-            // Generate nama file unik
-            $filename = time().'_'.$file->getClientOriginalName();
-
-            // Simpan ke storage/app/public/products
-            $path = $file->storeAs('products', $filename, 'public');
-
-            // Simpan hanya nama file ke database (BUKAN path lengkap)
+            $filename = time().'_cover_'.$file->getClientOriginalName();
+            $file->storeAs('products', $filename, 'public');
             $data['image'] = $filename;
-
-            // Debug log (hapus setelah selesai)
-            \Log::info('File uploaded:', [
-                'original' => $file->getClientOriginalName(),
-                'saved_as' => $filename,
-                'path' => $path,
-                'full_path' => storage_path('app/public/'.$path),
-            ]);
         }
 
-        Product::create($data);
+        $product = Product::create($data);
+
+        // Handle gallery images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $filename = time().'_gallery_'.$file->getClientOriginalName();
+                $file->storeAs('products', $filename, 'public');
+                $product->images()->create(['image_path' => $filename]);
+            }
+        }
 
         return redirect()->route('admin.products.index')
             ->with('success', 'Product created successfully');
@@ -76,11 +73,12 @@ class ProductsController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:available,unavailable',
-            'categories' => 'required|in:unit,spharepart',
+            'categories' => 'required|in:unit,sparepart',
         ]);
 
-        $data = $request->except('image');
+        $data = $request->except(['image', 'images']);
 
         if ($request->hasFile('image')) {
             // Hapus file lama jika ada
@@ -90,14 +88,21 @@ class ProductsController extends Controller
 
             // Upload file baru
             $file = $request->file('image');
-            $filename = time().'_'.$file->getClientOriginalName();
+            $filename = time().'_cover_'.$file->getClientOriginalName();
             $file->storeAs('products', $filename, 'public');
-
-            // Simpan nama file
             $data['image'] = $filename;
         }
 
         $product->update($data);
+
+        // Handle extra gallery images (append)
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $filename = time().'_gallery_'.$file->getClientOriginalName();
+                $file->storeAs('products', $filename, 'public');
+                $product->images()->create(['image_path' => $filename]);
+            }
+        }
 
         return redirect()->route('admin.products.index')
             ->with('success', 'Product updated successfully');
@@ -105,9 +110,14 @@ class ProductsController extends Controller
 
     public function destroy(Product $product)
     {
-        // Hapus file gambar jika ada
+        // Hapus file gambar cover jika ada
         if ($product->image) {
             Storage::disk('public')->delete('products/'.$product->image);
+        }
+
+        // Hapus gallery images dari storage
+        foreach ($product->images as $img) {
+            Storage::disk('public')->delete('products/'.$img->image_path);
         }
 
         $product->delete();

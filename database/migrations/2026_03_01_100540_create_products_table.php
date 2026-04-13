@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('image')->nullable();
             $table->enum('status', ['available', 'unavailable'])->default('available');
-            $table->enum('categories', ['spharepart', 'unit'])->default('unit');
+            $table->enum('categories', ['sparepart', 'unit', 'equipment'])->default('unit');
             //$table->foreignId('categories_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });

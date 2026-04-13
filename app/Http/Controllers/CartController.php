@@ -51,7 +51,9 @@ class CartController extends Controller
     public function update(Request $request, CartItem $item)
     {
         $request->validate([
-            'quantity' => 'required|integer|min:1',
+            'quantity' => 'required|integer|min:1|max:'.$item->product->stock,
+        ], [
+            'quantity.max' => 'Quantity exceeds available stock (Max: '.$item->product->stock.').'
         ]);
 
         $item->update([

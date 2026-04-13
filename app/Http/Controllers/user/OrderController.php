@@ -74,6 +74,12 @@ class OrderController extends Controller
             'stock' => $product->stock - $validated['quantity'],
         ]);
 
+        // Hapus produk dari keranjang jika ada
+        $cart = \App\Models\Cart::where('user_id', Auth::id())->first();
+        if ($cart) {
+            $cart->items()->where('product_id', $validated['product_id'])->delete();
+        }
+
         return redirect()->route('user.orders.index')->with('success', 'Order placed successfully! Order Number: '.$orderNumber);
     }
 }

@@ -25,7 +25,7 @@
         }
     </style>
 </head>
-<body>
+<body class="@yield('body_class', 'bg-white')">
     @yield('content')
 </body>
 </html>

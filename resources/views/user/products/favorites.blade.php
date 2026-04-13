@@ -3,108 +3,94 @@
 @section('title', 'My Favorites')
 @section('content')
 
-    {{-- Header dengan gradient (responsive) --}}
-    <div class="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-4 shadow-md">
+    {{-- Header --}}
+    <div class="sticky top-0 z-10 bg-slate-900/80 backdrop-blur-xl border-b border-slate-800 px-4 py-4 shadow-md">
         <div class="flex items-center gap-3">
             <a href="{{ url()->previous() }}"
-                class="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-all">
+                class="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-800 border border-slate-700/50 text-slate-200 hover:bg-slate-700 transition-all shadow-sm">
                 <span class="material-symbols-outlined" style="font-size:1.2rem;">arrow_back</span>
             </a>
-            <h2 class="text-xl font-bold text-white">My Favorites</h2>
+            <h2 class="text-xl font-bold text-slate-100 tracking-tight">My Favorites</h2>
         </div>
     </div>
 
-    {{-- Info & Count Card (responsive) --}}
-    <section class="px-4 mt-4 mb-4">
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-red-500" style="font-size:1.5rem;">favorite</span>
+    {{-- Info & Count Card --}}
+    <section class="px-4 mt-6 mb-6">
+        <div class="bg-slate-800 rounded-2xl border border-slate-700/50 shadow-lg p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center shadow-inner">
+                    <span class="material-symbols-outlined text-rose-500" style="font-size:1.6rem; font-variation-settings: 'FILL' 1;">favorite</span>
                 </div>
                 <div>
-                    <h3 class="text-sm font-medium text-gray-500">Your Favorite Items</h3>
-                    <p class="text-xs text-gray-400">Products you've saved</p>
+                    <h3 class="font-bold text-slate-100">Saved Items</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Your personal wishlist collection</p>
                 </div>
             </div>
-            <div class="flex items-center gap-2 ml-13 sm:ml-0">
-                <div class="bg-blue-50 px-4 py-2 rounded-xl">
-                    <span class="text-sm font-bold text-blue-600">{{ $favorites->count() }}</span>
-                    <span class="text-xs text-gray-500 ml-1">items</span>
-                </div>
+            <div class="flex items-center sm:ml-0 bg-slate-900/50 border border-slate-700/50 px-4 py-2.5 rounded-xl">
+                <span class="text-sm font-black text-rose-500 tracking-tight">{{ $favorites->count() }}</span>
+                <span class="text-xs font-medium text-slate-400 ml-1.5 uppercase tracking-wider">Items</span>
             </div>
         </div>
     </section>
 
-    {{-- Favorites Grid - FULLY RESPONSIVE --}}
-    <section class="px-4 pb-8">
+    {{-- Favorites Grid --}}
+    <section class="px-4 pb-12">
         @if ($favorites->isEmpty())
-            {{-- Empty State - Responsive --}}
-            <div class="flex flex-col items-center justify-center min-h-[60vh] text-gray-400">
-                <div class="w-32 h-32 sm:w-40 sm:h-40 bg-red-50 rounded-full flex items-center justify-center mb-6">
-                    <span class="material-symbols-outlined text-red-200" style="font-size: 4rem; sm:font-size: 5rem;">favorite</span>
+            {{-- Empty State --}}
+            <div class="flex flex-col items-center justify-center min-h-[50vh] text-center">
+                <div class="w-32 h-32 bg-slate-800 rounded-full flex items-center justify-center mb-6 shadow-inner border border-slate-700/50">
+                    <span class="material-symbols-outlined text-slate-600" style="font-size: 4rem;">heart_broken</span>
                 </div>
-                <p class="font-semibold text-gray-700 text-xl sm:text-2xl">No favorites yet</p>
-                <p class="text-sm text-gray-400 mt-2 text-center max-w-[280px] sm:max-w-[320px] px-4">
-                    Tap the heart icon on any product to add it to your favorites list
+                <p class="font-bold text-slate-100 text-xl">No favorites yet</p>
+                <p class="text-sm text-slate-400 mt-2 max-w-[280px]">
+                    Tap the heart icon on any product to save it here for later
                 </p>
-                <div class="flex flex-col sm:flex-row gap-3 mt-8 w-full sm:w-auto px-4 sm:px-0">
+                <div class="flex flex-col sm:flex-row gap-3 mt-8 w-full sm:w-auto px-6 max-w-sm mx-auto">
                     <a href="{{ route('user.explore.index') }}"
-                        class="w-full sm:w-auto text-center px-6 py-3.5 bg-blue-600 text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all">
+                        class="w-full sm:w-auto text-center px-6 py-3.5 bg-blue-600 text-white text-sm font-bold rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:bg-blue-500 transition-all">
                         Browse Products
-                    </a>
-                    <a href="{{ route('user.home') }}"
-                        class="w-full sm:w-auto text-center px-6 py-3.5 bg-gray-100 text-gray-700 text-sm font-bold rounded-xl hover:bg-gray-200 transition-all">
-                        Go to Home
                     </a>
                 </div>
             </div>
         @else
-            {{-- Grid: 2 kolom mobile, 3 kolom tablet, 4 kolom desktop --}}
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
+            {{-- Grid format matching Home & Explore --}}
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
                 @foreach ($favorites as $favorite)
-                    <div class="group relative bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+                <div class="group relative bg-slate-800 rounded-2xl border border-slate-700 p-3 shadow-lg shadow-black/20 hover:border-blue-500/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
                         
                         {{-- Image Container --}}
-                        <div class="relative aspect-square w-full overflow-hidden rounded-t-2xl bg-gradient-to-br from-gray-50 to-gray-100">
+                        <div class="relative aspect-square w-full shrink-0 overflow-hidden rounded-xl bg-slate-700/50 flex items-center justify-center">
                             @if ($favorite->product->image)
-                                @php
-                                    $imageName = basename($favorite->product->image);
-                                    $imagePath = 'products/' . $imageName;
-                                @endphp
-                                <img src="{{ asset('storage/' . $imagePath) }}" 
+                                <img src="{{ asset('storage/products/' . $favorite->product->image) }}" 
                                      alt="{{ $favorite->product->name }}"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                     onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'material-symbols-outlined text-gray-300\' style=\'font-size:3rem;\'>image_not_supported</span>'">
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @else
-                                <div class="w-full h-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-gray-300" style="font-size:3rem;">directions_bike</span>
-                                </div>
+                                <img src="{{ asset('storage/mail.jpeg') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @endif
 
-                            {{-- Low Stock Badge - Responsive --}}
+                            {{-- Low Stock Badge --}}
                             @if ($favorite->product->stock <= 5 && $favorite->product->stock > 0)
-                                <span class="absolute top-2 left-2 text-[10px] sm:text-xs bg-gradient-to-r from-red-500 to-red-400 text-white px-2 py-1 rounded-full shadow-md">
+                                <span class="absolute top-2 left-2 text-xs bg-rose-500/80 backdrop-blur-sm text-white px-2 py-0.5 rounded font-bold shadow-md z-10">
                                     Low Stock
                                 </span>
                             @endif
 
                             {{-- Unavailable Badge --}}
                             @if ($favorite->product->status !== 'available' || $favorite->product->stock <= 0)
-                                <span class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center">
-                                    <span class="text-white text-xs sm:text-sm font-bold bg-black/60 px-3 py-1.5 rounded-full">
-                                        Unavailable
+                                <span class="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] flex items-center justify-center z-10">
+                                    <span class="text-rose-400 text-xs font-bold bg-rose-500/10 px-3 py-1.5 rounded-lg border border-rose-500/30">
+                                        Sold Out
                                     </span>
                                 </span>
                             @endif
 
                             {{-- Favorite Button (to remove) --}}
-                            <form action="{{ route('user.favorites.toggle', $favorite->product) }}" method="POST" class="absolute top-2 right-2 z-10">
+                            <form action="{{ route('user.favorites.toggle', $favorite->product) }}" method="POST" class="absolute top-2 right-2 z-20">
                                 @csrf
                                 <button type="submit" 
-                                    class="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white/90 backdrop-blur shadow-lg hover:bg-red-50 transition-all group/btn"
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-900/60 backdrop-blur-md shadow-sm hover:scale-110 transition-transform group/btn"
                                     title="Remove from favorites">
-                                    <span class="material-symbols-outlined text-red-500 group-hover/btn:scale-110 transition-transform" 
-                                          style="font-size:1.2rem; sm:font-size:1.4rem;" 
+                                    <span class="material-symbols-outlined text-rose-500 group-hover/btn:opacity-75 transition-opacity text-lg" 
                                           style="font-variation-settings:'FILL' 1">
                                         favorite
                                     </span>
@@ -113,66 +99,39 @@
                         </div>
 
                         {{-- Content --}}
-                        <div class="p-2 sm:p-3">
+                        <a href="{{ route('user.products.show', $favorite->product) }}" class="flex flex-col flex-1 mt-3">
                             {{-- Category --}}
-                            <p class="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-blue-600 mb-1">
+                            <p class="text-xs font-bold uppercase tracking-widest text-blue-400">
                                 {{ $favorite->product->categories === 'unit' ? 'Full Bike' : 'Spare Part' }}
                             </p>
 
                             {{-- Name --}}
-                            <h4 class="font-bold text-gray-900 text-xs sm:text-sm leading-tight truncate">
+                            <h4 class="font-bold text-slate-100 text-sm mt-1 leading-snug line-clamp-2">
                                 {{ $favorite->product->name }}
                             </h4>
 
-                            {{-- Description (hidden on mobile) --}}
-                            <p class="hidden sm:block text-[10px] sm:text-xs text-gray-400 mt-1 truncate">
-                                {{ Str::limit($favorite->product->description, 30) ?? 'No description' }}
-                            </p>
-
-                            {{-- Price & Action --}}
-                            <div class="mt-2 flex items-center justify-between">
-                                <div>
-                                    <span class="text-xs sm:text-sm font-bold text-gray-900">
-                                        Rp {{ number_format($favorite->product->price, 0, ',', '.') }}
-                                    </span>
-                                </div>
+                            {{-- Price & Cart --}}
+                            <div class="mt-auto pt-3 flex items-center justify-between">
+                                <span class="text-sm font-extrabold text-blue-50 tracking-tight">
+                                    Rp {{ number_format($favorite->product->price, 0, ',', '.') }}
+                                </span>
                                 
                                 @if ($favorite->product->stock > 0 && $favorite->product->status === 'available')
-                                    <a href="{{ route('user.orders.create', $favorite->product) }}" 
-                                       class="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                                       title="Order now">
-                                        <span class="material-symbols-outlined text-base sm:text-lg">add</span>
-                                    </a>
-                                @else
-                                    <span class="text-[8px] sm:text-[10px] text-red-400 font-medium px-1.5 py-0.5 bg-red-50 rounded-full">
-                                        Sold Out
-                                    </span>
+                                    <form action="{{ route('user.cart.add', $favorite->product) }}" method="POST" onclick="event.stopPropagation();">
+                                        @csrf
+                                        <button type="submit" title="Add to Cart"
+                                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-700 text-blue-400 hover:bg-blue-600 hover:text-white transition-colors shadow-inner shadow-slate-600/50">
+                                            <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+                                        </button>
+                                    </form>
                                 @endif
                             </div>
-                        </div>
+                        </a>
+
                     </div>
                 @endforeach
             </div>
-
-            {{-- Bottom Navigation for Mobile --}}
-            <div class="mt-8 flex justify-center sm:hidden">
-                <a href="{{ route('user.explore.index') }}" 
-                   class="flex items-center gap-2 text-blue-600 bg-blue-50 px-5 py-3 rounded-xl text-sm font-bold">
-                    <span class="material-symbols-outlined">explore</span>
-                    Explore More Products
-                </a>
-            </div>
         @endif
     </section>
-
-    {{-- Floating Action Button for Mobile (optional) --}}
-    @if(!$favorites->isEmpty())
-        <div class="fixed bottom-20 right-4 sm:hidden">
-            <a href="{{ route('user.explore.index') }}"
-               class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-300 hover:bg-blue-700 transition-all">
-                <span class="material-symbols-outlined">add</span>
-            </a>
-        </div>
-    @endif
 
 @endsection
