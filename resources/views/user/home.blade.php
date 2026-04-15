@@ -31,7 +31,7 @@
         </header>
         <div class="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gray-200">
             <div class="absolute inset-0 bg-cover bg-center"
-                style="background-image: linear-gradient(to right, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.2) 65%), url({{ asset('storage/mail.jpeg') }});">
+                style="background-image: linear-gradient(to right, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.2) 65%), url({{ asset('storage/sepedaHome.png') }});">
             </div>
             <div class="relative flex h-full flex-col justify-center p-6">
                 <span
@@ -111,10 +111,10 @@
                         <div
                             class="relative aspect-square w-full shrink-0 overflow-hidden rounded-xl bg-slate-700/50 flex items-center justify-center">
                             @if ($product->image)
-                                <img src="{{ asset('storage/products/' . $product->image) }}"
+                                <img src="{{ asset('storage/' . $product->image) }}"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @else
-                                <img src="{{ asset('storage/mail.jpeg') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                <img src="{{ asset('storage/Sepeda1.jpg') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @endif
 
                             @if ($product->stock <= 5 && $product->stock > 0)

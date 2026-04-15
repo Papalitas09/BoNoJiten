@@ -30,9 +30,10 @@
             {{-- Main Active Image --}}
             <div class="aspect-video w-full rounded-3xl p-2 bg-slate-800 border border-slate-700/50 flex items-center justify-center shadow-lg shadow-black/10 overflow-hidden relative">
                 @if ($product->image)
-                    <img id="main-image" src="{{ asset('storage/products/' . $product->image) }}" class="w-full h-full object-cover rounded-2xl transition-all duration-300">
+                    <img id="main-image" src="{{ asset('storage/' . $product->image) }}" class="w-full h-full object-cover rounded-2xl transition-all duration-300">
                 @else
-                    <span class="material-symbols-outlined text-slate-600 w-full text-center" style="font-size: 3rem;">directions_bike</span>
+                    {{-- <span class="material-symbols-outlined text-slate-600 w-full text-center" style="font-size: 3rem;">directions_bike</span> --}}
+                    <img id="main-image" src="{{ asset('storage/Sepeda1.jpg') }}" class="w-full h-full object-cover rounded-2xl transition-all duration-300">
                 @endif
 
                 @if ($product->stock <= 5 && $product->stock > 0)
@@ -45,15 +46,15 @@
                 {{-- Primary cover thumbnail --}}
                 @if ($product->image)
                     <button type="button" class="thumbnail-btn w-16 h-16 shrink-0 rounded-xl bg-slate-800 border-2 border-blue-500 overflow-hidden cursor-pointer hover:border-blue-400 transition-colors shadow-md"
-                        data-src="{{ asset('storage/products/' . $product->image) }}">
-                        <img src="{{ asset('storage/products/' . $product->image) }}" class="w-full h-full object-cover opacity-100 transition-opacity">
+                        data-src="{{ asset('storage/' . $product->image) }}">
+                        <img src="{{ asset('storage/' . $product->image) }}" class="w-full h-full object-cover opacity-100 transition-opacity">
                     </button>
                 @endif
                 {{-- Extra gallery thumbnails --}}
                 @foreach($product->images as $img)
                     <button type="button" class="thumbnail-btn w-16 h-16 shrink-0 rounded-xl bg-slate-800 border-2 border-slate-700/50 overflow-hidden cursor-pointer hover:border-blue-400 transition-colors shadow-md"
-                        data-src="{{ asset('storage/products/' . $img->image_path) }}">
-                        <img src="{{ asset('storage/products/' . $img->image_path) }}" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity">
+                        data-src="{{ asset('storage/' . $img->image_path) }}">
+                        <img src="{{ asset('storage/' . $img->image_path) }}" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity">
                     </button>
                 @endforeach
             </div>
@@ -198,9 +199,9 @@
                                 {{-- Image --}}
                                 <div class="relative aspect-square w-full overflow-hidden rounded-xl bg-slate-700/50 flex items-center justify-center shrink-0">
                                      @if ($related->image)
-                                          <img src="{{ asset('storage/products/' . $related->image) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                          <img src="{{ asset('storage/' . $related->image) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                      @else
-                                          <img src="{{ asset('storage/mail.jpeg') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                          <img src="{{ asset('storage/Sepeda1.jpg') }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                      @endif
 
                                      @if ($related->stock <= 5 && $related->stock > 0)

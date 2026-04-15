@@ -26,9 +26,15 @@ class UserSeeder extends Seeder
                 "role" => "user"
             ],
              [
-                "username" => "bgst2",
-                "email" => "bgst2@example.com",
-                "password" => bcrypt("password123"),
+                "username" => "John Obama",
+                "email" => "John@gmail.com",
+                "password" => bcrypt("jon123"),
+                "role" => "user"
+            ],
+            [
+                "username" => "Gheraldy Moses T",
+                "email" => "Gheraldy@gmail.com",
+                "password" => bcrypt("gher123"),
                 "role" => "user"
             ],
 

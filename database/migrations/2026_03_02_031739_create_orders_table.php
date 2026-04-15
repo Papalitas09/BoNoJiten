@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('address');
             $table->integer('quantity');
             $table->string('order_number')->unique();
-            $table->enum('payment_method', ['transfer', 'cod', 'ewallet'])->default('cod');
+            $table->enum('payment_method', ['transfer', 'cod'])->default('cod');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->timestamps();

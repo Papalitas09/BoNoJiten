@@ -101,7 +101,7 @@
                         <div
                             class="relative aspect-square w-full overflow-hidden rounded-xl bg-slate-700/50 flex items-center justify-center shrink-0">
                             @if ($product->image)
-                                <img src="{{ asset('storage/products/' . $product->image) }}"
+                                <img src="{{ asset('storage/' . $product->image) }}"
                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             @else
                                 <img src="{{ asset('storage/mail.jpeg') }}"

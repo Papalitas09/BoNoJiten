@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ProductSeeder extends Seeder
 {
@@ -13,7 +13,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $products = [
+        $baseProducts = [
             // --- FULL BIKES (Units) ---
             [
                 "name" => "Polygon Siskiu T8",
@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
                 "stock" => 15,
                 "categories" => "unit",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Trek Marlin 7 Gen 3",
@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
                 "stock" => 8,
                 "categories" => "unit",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Specialized Stumpjumper EVO Elite Alloy",
@@ -40,7 +40,7 @@ class ProductSeeder extends Seeder
                 "stock" => 3,
                 "categories" => "unit",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Santa Cruz Hightower 3",
@@ -49,7 +49,7 @@ class ProductSeeder extends Seeder
                 "stock" => 1,
                 "categories" => "unit",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Giant Trance X Advanced Pro 29",
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
                 "stock" => 0,
                 "categories" => "unit",
                 "status" => "unavailable",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Polygon Collosus N9",
@@ -67,7 +67,7 @@ class ProductSeeder extends Seeder
                 "stock" => 5,
                 "categories" => "unit",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Cannondale Scalpel HT Carbon 3",
@@ -76,7 +76,7 @@ class ProductSeeder extends Seeder
                 "stock" => 7,
                 "categories" => "unit",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Scott Spark RC Team Issue AXS",
@@ -85,7 +85,7 @@ class ProductSeeder extends Seeder
                 "stock" => 2,
                 "categories" => "unit",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
 
             // --- SPAREPARTS ---
@@ -96,7 +96,7 @@ class ProductSeeder extends Seeder
                 "stock" => 20,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Maxxis Minion DHF Tire 29x2.5",
@@ -105,7 +105,7 @@ class ProductSeeder extends Seeder
                 "stock" => 42,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "RockShox Recon Silver RL Fork",
@@ -114,7 +114,7 @@ class ProductSeeder extends Seeder
                 "stock" => 12,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "SRAM GX Eagle 12-Speed Cassette",
@@ -123,7 +123,7 @@ class ProductSeeder extends Seeder
                 "stock" => 18,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Fox 36 Factory GRIP2 Fork",
@@ -132,7 +132,7 @@ class ProductSeeder extends Seeder
                 "stock" => 4,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Shimano XTR M9120 4-Piston Brakeset",
@@ -141,7 +141,7 @@ class ProductSeeder extends Seeder
                 "stock" => 6,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Crankbrothers Stamp 7 Flat Pedals",
@@ -150,7 +150,7 @@ class ProductSeeder extends Seeder
                 "stock" => 25,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Ergon GA2 Grips",
@@ -159,7 +159,7 @@ class ProductSeeder extends Seeder
                 "stock" => 55,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Race Face Chester Handlebar",
@@ -168,7 +168,7 @@ class ProductSeeder extends Seeder
                 "stock" => 14,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "RockShox Reverb Stealth Dropper Post",
@@ -177,7 +177,7 @@ class ProductSeeder extends Seeder
                 "stock" => 8,
                 "categories" => "sparepart",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             
             // --- EQUIPMENT ---
@@ -188,7 +188,7 @@ class ProductSeeder extends Seeder
                 "stock" => 100,
                 "categories" => "equipment",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Giro Fixture MIPS Helmet",
@@ -197,7 +197,7 @@ class ProductSeeder extends Seeder
                 "stock" => 25,
                 "categories" => "equipment",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Fox Racing Defend Gloves",
@@ -206,7 +206,7 @@ class ProductSeeder extends Seeder
                 "stock" => 30,
                 "categories" => "equipment",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ],
             [
                 "name" => "Park Tool PCS-10.3 Repair Stand",
@@ -215,12 +215,31 @@ class ProductSeeder extends Seeder
                 "stock" => 12,
                 "categories" => "equipment",
                 "status" => "available",
-                "image" => null,
+                "image" => "mail.jpeg",
             ]
         ];
 
-        foreach ($products as $product) {
-            Product::create($product);
+        $products = [];
+        $now = Carbon::now();
+
+        // Memasukkan data ke array baru beserta timestamps
+        foreach ($baseProducts as $product) {
+            $products[] = [
+                'name'        => $product['name'],
+                'description' => $product['description'],
+                'price'       => $product['price'],
+                'stock'       => $product['stock'],
+                'categories'  => $product['categories'],
+                'status'      => $product['status'],
+                'image'       => $product['image'],
+                'created_at'  => $now,
+                'updated_at'  => $now,
+            ];
         }
+
+        // Insert semua data ke database sekaligus
+        DB::table('products')->insert($products);
+        
+        $this->command->info(count($products) . ' Data Products berhasil ditambahkan tanpa randomizer!');
     }
 }
