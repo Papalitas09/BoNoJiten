@@ -169,7 +169,7 @@
 
     </section>
 
-    {{-- Workshop Banner --}}
+    {{-- Workshop Banner
     <section class="mt-8 px-4 pb-4">
         <div class="relative overflow-hidden rounded-2xl border border-blue-500/20 bg-blue-900/20 p-5 shadow-lg">
             <div class="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-blue-500/20 blur-xl"></div>
@@ -183,6 +183,6 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 @endsection

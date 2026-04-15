@@ -32,7 +32,7 @@ class ProductsController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:available,unavailable',
-            'categories' => 'required|in:unit,sparepart',
+            'categories' => 'required|in:unit,sparepart,equipment',
         ]);
 
         $data = $request->except(['image', 'images']);
@@ -75,7 +75,7 @@ class ProductsController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:available,unavailable',
-            'categories' => 'required|in:unit,sparepart',
+            'categories' => 'required|in:unit,sparepart,equipment',
         ]);
 
         $data = $request->except(['image', 'images']);

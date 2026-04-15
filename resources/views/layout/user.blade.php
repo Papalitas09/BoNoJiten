@@ -25,95 +25,138 @@
     </style>
 </head>
 
-<body class="bg-slate-900 text-slate-200 min-h-screen selection:bg-blue-500 selection:text-white">
-    <main class="flex-1 pb-24">
+<body class="bg-slate-900 text-slate-200 min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+    <main class="flex-grow">
         @yield('content')
     </main>
-    {{-- Bottom Navigation --}}
-    <nav
-        class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-sm rounded-[2rem] bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 px-2 pb-2 pt-2 shadow-2xl shadow-blue-900/10">
-        <div class="mx-auto flex w-full items-center justify-between">
 
-            {{-- Home --}}
-            <a href="{{ route('user.home') }}" class="flex flex-1 flex-col items-center justify-center gap-1 group">
-                <div
-                    class="relative flex h-10 w-12 items-center justify-center rounded-2xl transition-all duration-300
-                        {{ request()->routeIs('user.home') ? 'bg-blue-500/20 text-blue-400 scale-110' : 'text-slate-400 group-hover:scale-110 group-hover:text-slate-300' }}">
-                    <span class="material-symbols-outlined text-[26px]"
-                        @if (request()->routeIs('user.home')) style="font-variation-settings:'FILL' 1" @endif>
-                        home
-                    </span>
-                    @if (request()->routeIs('user.home'))
-                        <div class="absolute -bottom-1 h-1 w-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-                    @endif
+    @if (!request()->routeIs('user.orders.create'))
+        {{-- Footer User Layout --}}
+        <footer class="mt-auto border-t border-slate-800/50 bg-slate-900/50 px-6 pt-10 pb-28">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/30">
+                            B
+                        </div>
+                        <span class="text-xl font-bold text-slate-200">BoNoJiten</span>
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+                        Your trusted partner for high-quality cycling components. Ride with confidence.
+                    </p>
                 </div>
-                <span
-                    class="text-[10px] font-medium tracking-wide transition-colors {{ request()->routeIs('user.home') ? 'text-blue-400' : 'text-slate-500' }}">
-                    Home
-                </span>
-            </a>
-
-            {{-- Explore --}}
-            <a href="{{ route('user.explore.index') }}"
-                class="flex flex-1 flex-col items-center justify-center gap-1 group">
-                <div
-                    class="relative flex h-10 w-12 items-center justify-center rounded-2xl transition-all duration-300
-                {{ request()->routeIs('user.explore*') ? 'bg-blue-500/20 text-blue-400 scale-110' : 'text-slate-400 group-hover:scale-110 group-hover:text-slate-300' }}">
-                    <span class="material-symbols-outlined text-[26px]"
-                        @if (request()->routeIs('user.explore*')) style="font-variation-settings:'FILL' 1" @endif>
-                        explore
-                    </span>
-                    @if (request()->routeIs('user.explore*'))
-                        <div class="absolute -bottom-1 h-1 w-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-                    @endif
+                
+                <div class="grid grid-cols-2 gap-4 md:col-span-2">
+                    <div>
+                        <h4 class="text-slate-200 font-semibold mb-3 text-sm">Main Menu</h4>
+                        <ul class="space-y-2 text-xs text-slate-400">
+                            <li><a href="{{ route('user.home') }}" class="hover:text-blue-400 transition-colors">Home</a></li>
+                            <li><a href="{{ route('user.explore.index') }}" class="hover:text-blue-400 transition-colors">Explore Categories</a></li>
+                            <li><a href="{{ route('user.orders.index') }}" class="hover:text-blue-400 transition-colors">My Orders</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-slate-200 font-semibold mb-3 text-sm">Account</h4>
+                        <ul class="space-y-2 text-xs text-slate-400">
+                            <li><a href="{{ route('user.profile') }}" class="hover:text-blue-400 transition-colors">My Profile</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Settings</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Support</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <span
-                    class="text-[10px] font-medium tracking-wide transition-colors {{ request()->routeIs('user.explore*') ? 'text-blue-400' : 'text-slate-500' }}">
-                    Explore
-                </span>
-            </a>
+            </div>
+            
+            <div class="max-w-7xl mx-auto pt-6 mt-8 border-t border-slate-800/50 text-[10px] sm:text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between pb-4">
+                <p>&copy; {{ date('Y') }} BoNoJiten. Crafted for cyclists.</p>
+            </div>
+        </footer>
+        
+        {{-- Bottom Navigation --}}
+        <nav
+            class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-sm rounded-[2rem] bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 px-2 pb-2 pt-2 shadow-2xl shadow-blue-900/10">
+            <div class="mx-auto flex w-full items-center justify-between">
 
-            {{-- Orders --}}
-            <a href="{{ route('user.orders.index') }}"
-                class="flex flex-1 flex-col items-center justify-center gap-1 group">
-                <div
-                    class="relative flex h-10 w-12 items-center justify-center rounded-2xl transition-all duration-300
-                        {{ request()->routeIs('user.orders*') ? 'bg-blue-500/20 text-blue-400 scale-110' : 'text-slate-400 group-hover:scale-110 group-hover:text-slate-300' }}">
-                    <span class="material-symbols-outlined text-[26px]"
-                        @if (request()->routeIs('user.orders*')) style="font-variation-settings:'FILL' 1" @endif>
-                        receipt_long
+                {{-- Home --}}
+                <a href="{{ route('user.home') }}" class="flex flex-1 flex-col items-center justify-center gap-1 group">
+                    <div
+                        class="relative flex h-10 w-12 items-center justify-center rounded-2xl transition-all duration-300
+                            {{ request()->routeIs('user.home') ? 'bg-blue-500/20 text-blue-400 scale-110' : 'text-slate-400 group-hover:scale-110 group-hover:text-slate-300' }}">
+                        <span class="material-symbols-outlined text-[26px]"
+                            @if (request()->routeIs('user.home')) style="font-variation-settings:'FILL' 1" @endif>
+                            home
+                        </span>
+                        @if (request()->routeIs('user.home'))
+                            <div class="absolute -bottom-1 h-1 w-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                        @endif
+                    </div>
+                    <span
+                        class="text-[10px] font-medium tracking-wide transition-colors {{ request()->routeIs('user.home') ? 'text-blue-400' : 'text-slate-500' }}">
+                        Home
                     </span>
-                    @if (request()->routeIs('user.orders*'))
-                        <div class="absolute -bottom-1 h-1 w-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-                    @endif
-                </div>
-                <span
-                    class="text-[10px] font-medium tracking-wide transition-colors {{ request()->routeIs('user.orders*') ? 'text-blue-400' : 'text-slate-500' }}">
-                    Orders
-                </span>
-            </a>
+                </a>
 
-            {{-- Profile --}}
-            <a href="{{ route('user.profile') }}" class="flex flex-1 flex-col items-center justify-center gap-1 group">
-                <div
-                    class="relative flex h-10 w-12 items-center justify-center rounded-2xl transition-all duration-300
-                        {{ request()->routeIs('user.profile') ? 'bg-blue-500/20 text-blue-400 scale-110' : 'text-slate-400 group-hover:scale-110 group-hover:text-slate-300' }}">
-                    <span class="material-symbols-outlined text-[26px]"
-                        @if (request()->routeIs('user.profile')) style="font-variation-settings:'FILL' 1" @endif>
-                        person
+                {{-- Explore --}}
+                <a href="{{ route('user.explore.index') }}"
+                    class="flex flex-1 flex-col items-center justify-center gap-1 group">
+                    <div
+                        class="relative flex h-10 w-12 items-center justify-center rounded-2xl transition-all duration-300
+                    {{ request()->routeIs('user.explore*') ? 'bg-blue-500/20 text-blue-400 scale-110' : 'text-slate-400 group-hover:scale-110 group-hover:text-slate-300' }}">
+                        <span class="material-symbols-outlined text-[26px]"
+                            @if (request()->routeIs('user.explore*')) style="font-variation-settings:'FILL' 1" @endif>
+                            explore
+                        </span>
+                        @if (request()->routeIs('user.explore*'))
+                            <div class="absolute -bottom-1 h-1 w-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                        @endif
+                    </div>
+                    <span
+                        class="text-[10px] font-medium tracking-wide transition-colors {{ request()->routeIs('user.explore*') ? 'text-blue-400' : 'text-slate-500' }}">
+                        Explore
                     </span>
-                    @if (request()->routeIs('user.profile'))
-                        <div class="absolute -bottom-1 h-1 w-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-                    @endif
-                </div>
-                <span
-                    class="text-[10px] font-medium tracking-wide transition-colors {{ request()->routeIs('user.profile') ? 'text-blue-400' : 'text-slate-500' }}">
-                    Profile
-                </span>
-            </a>
+                </a>
 
-        </div>
-    </nav>
+                {{-- Orders --}}
+                <a href="{{ route('user.orders.index') }}"
+                    class="flex flex-1 flex-col items-center justify-center gap-1 group">
+                    <div
+                        class="relative flex h-10 w-12 items-center justify-center rounded-2xl transition-all duration-300
+                            {{ request()->routeIs('user.orders*') && !request()->routeIs('user.orders.create') ? 'bg-blue-500/20 text-blue-400 scale-110' : 'text-slate-400 group-hover:scale-110 group-hover:text-slate-300' }}">
+                        <span class="material-symbols-outlined text-[26px]"
+                            @if (request()->routeIs('user.orders*') && !request()->routeIs('user.orders.create')) style="font-variation-settings:'FILL' 1" @endif>
+                            receipt_long
+                        </span>
+                        @if (request()->routeIs('user.orders*') && !request()->routeIs('user.orders.create'))
+                            <div class="absolute -bottom-1 h-1 w-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                        @endif
+                    </div>
+                    <span
+                        class="text-[10px] font-medium tracking-wide transition-colors {{ request()->routeIs('user.orders*') && !request()->routeIs('user.orders.create') ? 'text-blue-400' : 'text-slate-500' }}">
+                        Orders
+                    </span>
+                </a>
+
+                {{-- Profile --}}
+                <a href="{{ route('user.profile') }}" class="flex flex-1 flex-col items-center justify-center gap-1 group">
+                    <div
+                        class="relative flex h-10 w-12 items-center justify-center rounded-2xl transition-all duration-300
+                            {{ request()->routeIs('user.profile') ? 'bg-blue-500/20 text-blue-400 scale-110' : 'text-slate-400 group-hover:scale-110 group-hover:text-slate-300' }}">
+                        <span class="material-symbols-outlined text-[26px]"
+                            @if (request()->routeIs('user.profile')) style="font-variation-settings:'FILL' 1" @endif>
+                            person
+                        </span>
+                        @if (request()->routeIs('user.profile'))
+                            <div class="absolute -bottom-1 h-1 w-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                        @endif
+                    </div>
+                    <span
+                        class="text-[10px] font-medium tracking-wide transition-colors {{ request()->routeIs('user.profile') ? 'text-blue-400' : 'text-slate-500' }}">
+                        Profile
+                    </span>
+                </a>
+
+            </div>
+        </nav>
+    @endif
 </body>
 
 </html>

@@ -8,133 +8,133 @@
 
     {{-- Greeting --}}
     <div>
-        <h2 class="text-2xl font-bold text-gray-800">Welcome back, {{ Auth::user()->username }} 👋</h2>
-        <p class="text-sm text-gray-500 mt-1">{{ now()->format('l, d F Y') }}</p>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-100">Welcome back, {{ Auth::user()->username }} 👋</h2>
+        <p class="text-sm text-slate-400 mt-1">{{ now()->format('l, d F Y') }}</p>
     </div>
 
     {{-- Stats Cards --}}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
 
         {{-- Total Products --}}
-        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+        <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-4 sm:p-5 shadow-lg shadow-black/10">
             <div class="flex items-center justify-between mb-3">
-                <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-blue-600" style="font-size:1.25rem;">directions_bike</span>
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-blue-400" style="font-size:1.1rem;">directions_bike</span>
                 </div>
-                <span class="text-xs font-medium text-gray-400">Products</span>
+                <span class="text-xs font-medium text-slate-400">Products</span>
             </div>
-            <p class="text-3xl font-bold text-gray-800">{{ $totalProducts }}</p>
-            <p class="text-xs text-gray-400 mt-1">Total products listed</p>
+            <p class="text-2xl sm:text-3xl font-bold text-slate-100">{{ $totalProducts }}</p>
+            <p class="text-xs text-slate-400 mt-1">Total listed</p>
         </div>
 
         {{-- Total Orders --}}
-        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+        <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-4 sm:p-5 shadow-lg shadow-black/10">
             <div class="flex items-center justify-between mb-3">
-                <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-green-600" style="font-size:1.25rem;">shopping_cart</span>
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-emerald-400" style="font-size:1.1rem;">shopping_cart</span>
                 </div>
-                <span class="text-xs font-medium text-gray-400">Orders</span>
+                <span class="text-xs font-medium text-slate-400">Orders</span>
             </div>
-            <p class="text-3xl font-bold text-gray-800">{{ $totalOrders }}</p>
-            <p class="text-xs text-gray-400 mt-1">All time orders</p>
+            <p class="text-2xl sm:text-3xl font-bold text-slate-100">{{ $totalOrders }}</p>
+            <p class="text-xs text-slate-400 mt-1">All time</p>
         </div>
 
         {{-- Pending Orders --}}
-        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+        <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-4 sm:p-5 shadow-lg shadow-black/10">
             <div class="flex items-center justify-between mb-3">
-                <div class="w-10 h-10 rounded-lg bg-yellow-50 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-yellow-600" style="font-size:1.25rem;">pending</span>
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-amber-400" style="font-size:1.1rem;">pending</span>
                 </div>
-                <span class="text-xs font-medium text-gray-400">Pending</span>
+                <span class="text-xs font-medium text-slate-400">Pending</span>
             </div>
-            <p class="text-3xl font-bold text-gray-800">{{ $pendingOrders }}</p>
-            <p class="text-xs text-gray-400 mt-1">Awaiting processing</p>
+            <p class="text-2xl sm:text-3xl font-bold text-slate-100">{{ $pendingOrders }}</p>
+            <p class="text-xs text-slate-400 mt-1">Processing</p>
         </div>
 
         {{-- Total Users --}}
-        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+        <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-4 sm:p-5 shadow-lg shadow-black/10">
             <div class="flex items-center justify-between mb-3">
-                <div class="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-purple-600" style="font-size:1.25rem;">group</span>
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-purple-400" style="font-size:1.1rem;">group</span>
                 </div>
-                <span class="text-xs font-medium text-gray-400">Users</span>
+                <span class="text-xs font-medium text-slate-400">Users</span>
             </div>
-            <p class="text-3xl font-bold text-gray-800">{{ $totalUsers }}</p>
-            <p class="text-xs text-gray-400 mt-1">Registered accounts</p>
+            <p class="text-2xl sm:text-3xl font-bold text-slate-100">{{ $totalUsers }}</p>
+            <p class="text-xs text-slate-400 mt-1">Registered</p>
         </div>
 
     </div>
 
     {{-- Chart + Quick Actions --}}
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
 
         {{-- Orders Chart --}}
-        <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-            <div class="flex items-center justify-between mb-6">
+        <div class="lg:col-span-2 bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-4 sm:p-6 shadow-lg shadow-black/10">
+            <div class="flex items-center justify-between mb-4 sm:mb-6">
                 <div>
-                    <h3 class="text-base font-bold text-gray-800">Orders This Month</h3>
-                    <p class="text-xs text-gray-400 mt-0.5">Daily order count</p>
+                    <h3 class="text-sm sm:text-base font-bold text-slate-100">Orders This Month</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">Daily order count</p>
                 </div>
                 <div class="text-right">
-                    <p class="text-2xl font-bold text-blue-600">{{ $totalOrders }}</p>
-                    <p class="text-xs text-gray-400">total orders</p>
+                    <p class="text-xl sm:text-2xl font-bold text-blue-400">{{ $totalOrders }}</p>
+                    <p class="text-xs text-slate-400">total orders</p>
                 </div>
             </div>
-            <div class="relative h-48">
+            <div class="relative h-40 sm:h-48">
                 <canvas id="ordersChart"></canvas>
             </div>
         </div>
 
         {{-- Quick Actions --}}
-        <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-            <h3 class="text-base font-bold text-gray-800 mb-4">Quick Actions</h3>
+        <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 p-4 sm:p-6 shadow-lg shadow-black/10">
+            <h3 class="text-sm sm:text-base font-bold text-slate-100 mb-4">Quick Actions</h3>
             <div class="space-y-2">
                 <a href="{{ route('admin.products.create') }}"
-                   class="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
-                    <span class="material-symbols-outlined text-blue-600" style="font-size:1.1rem;">add_circle</span>
-                    <span class="text-sm font-medium text-blue-700">Add New Product</span>
+                   class="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 transition-colors">
+                    <span class="material-symbols-outlined text-blue-400 shrink-0" style="font-size:1.1rem;">add_circle</span>
+                    <span class="text-sm font-medium text-blue-400">Add New Product</span>
                 </a>
                 <a href="{{ route('admin.orders.index') }}"
-                   class="flex items-center gap-3 px-4 py-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
-                    <span class="material-symbols-outlined text-green-600" style="font-size:1.1rem;">shopping_cart</span>
-                    <span class="text-sm font-medium text-green-700">View All Orders</span>
+                   class="flex items-center gap-3 px-4 py-3 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+                    <span class="material-symbols-outlined text-emerald-400 shrink-0" style="font-size:1.1rem;">shopping_cart</span>
+                    <span class="text-sm font-medium text-emerald-400">View All Orders</span>
                 </a>
                 <a href="{{ route('admin.accounts.create') }}"
-                   class="flex items-center gap-3 px-4 py-3 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors">
-                    <span class="material-symbols-outlined text-purple-600" style="font-size:1.1rem;">person_add</span>
-                    <span class="text-sm font-medium text-purple-700">Add New User</span>
+                   class="flex items-center gap-3 px-4 py-3 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-colors">
+                    <span class="material-symbols-outlined text-purple-400 shrink-0" style="font-size:1.1rem;">person_add</span>
+                    <span class="text-sm font-medium text-purple-400">Add New User</span>
                 </a>
                 <a href="{{ route('admin.products.index') }}"
-                   class="flex items-center gap-3 px-4 py-3 rounded-lg bg-yellow-50 hover:bg-yellow-100 transition-colors">
-                    <span class="material-symbols-outlined text-yellow-600" style="font-size:1.1rem;">inventory_2</span>
-                    <span class="text-sm font-medium text-yellow-700">Manage Inventory</span>
+                   class="flex items-center gap-3 px-4 py-3 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 transition-colors">
+                    <span class="material-symbols-outlined text-amber-400 shrink-0" style="font-size:1.1rem;">inventory_2</span>
+                    <span class="text-sm font-medium text-amber-400">Manage Inventory</span>
                 </a>
             </div>
 
             {{-- Order Status Breakdown --}}
-            <div class="mt-6 pt-4 border-t border-gray-100">
-                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Order Status</p>
+            <div class="mt-6 pt-4 border-t border-slate-700/50">
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Order Status</p>
                 <div class="space-y-2">
                     <div class="flex items-center justify-between text-sm">
                         <span class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
-                            <span class="text-gray-600">Pending</span>
+                            <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+                            <span class="text-slate-300">Pending</span>
                         </span>
-                        <span class="font-semibold text-gray-800">{{ $pendingOrders }}</span>
+                        <span class="font-semibold text-slate-100">{{ $pendingOrders }}</span>
                     </div>
                     <div class="flex items-center justify-between text-sm">
                         <span class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-green-400"></span>
-                            <span class="text-gray-600">Completed</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+                            <span class="text-slate-300">Completed</span>
                         </span>
-                        <span class="font-semibold text-gray-800">{{ $completedOrders }}</span>
+                        <span class="font-semibold text-slate-100">{{ $completedOrders }}</span>
                     </div>
                     <div class="flex items-center justify-between text-sm">
                         <span class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-red-400"></span>
-                            <span class="text-gray-600">Cancelled</span>
+                            <span class="w-2 h-2 rounded-full bg-rose-400 shrink-0"></span>
+                            <span class="text-slate-300">Cancelled</span>
                         </span>
-                        <span class="font-semibold text-gray-800">{{ $cancelledOrders }}</span>
+                        <span class="font-semibold text-slate-100">{{ $cancelledOrders }}</span>
                     </div>
                 </div>
             </div>
@@ -143,44 +143,44 @@
     </div>
 
     {{-- Recent Orders --}}
-    <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-            <h3 class="text-base font-bold text-gray-800">Recent Orders</h3>
-            <a href="{{ route('admin.orders.index') }}" class="text-sm text-blue-600 hover:underline font-medium">View all</a>
+    <div class="bg-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 shadow-lg shadow-black/10 overflow-hidden">
+        <div class="px-4 sm:px-6 py-4 border-b border-slate-700/50 flex items-center justify-between">
+            <h3 class="text-sm sm:text-base font-bold text-slate-100">Recent Orders</h3>
+            <a href="{{ route('admin.orders.index') }}" class="text-sm text-blue-400 hover:text-blue-300 hover:underline font-medium">View all</a>
         </div>
         <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left">
-                <thead class="bg-gray-50 text-gray-500 uppercase text-xs tracking-wider border-b border-gray-100">
+            <table class="w-full text-sm text-left" style="min-width: 640px;">
+                <thead class="bg-slate-700/50 text-slate-300 uppercase text-xs tracking-wider border-b border-slate-700/50">
                     <tr>
-                        <th class="px-6 py-3">Order #</th>
-                        <th class="px-6 py-3">Customer</th>
-                        <th class="px-6 py-3">Product</th>
-                        <th class="px-6 py-3">Total</th>
-                        <th class="px-6 py-3">Status</th>
-                        <th class="px-6 py-3">Date</th>
+                        <th class="px-4 sm:px-6 py-3 whitespace-nowrap">Order #</th>
+                        <th class="px-4 sm:px-6 py-3 whitespace-nowrap">Customer</th>
+                        <th class="px-4 sm:px-6 py-3 whitespace-nowrap">Product</th>
+                        <th class="px-4 sm:px-6 py-3 whitespace-nowrap">Total</th>
+                        <th class="px-4 sm:px-6 py-3 whitespace-nowrap">Status</th>
+                        <th class="px-4 sm:px-6 py-3 whitespace-nowrap">Date</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-50">
+                <tbody class="divide-y divide-slate-700/50">
                     @forelse($recentOrders as $order)
-                        <tr class="hover:bg-gray-50 transition-colors">
-                            <td class="px-6 py-4 font-mono text-blue-600">#{{ $order->order_number }}</td>
-                            <td class="px-6 py-4 font-medium text-gray-800">{{ $order->user->username ?? '-' }}</td>
-                            <td class="px-6 py-4 text-gray-600">{{ $order->product->name ?? '-' }}</td>
-                            <td class="px-6 py-4 font-medium text-gray-800">Rp {{ number_format($order->total_price, 0, ',', '.') }}</td>
-                            <td class="px-6 py-4">
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="px-4 sm:px-6 py-4 font-mono text-blue-400 whitespace-nowrap">#{{ $order->order_number }}</td>
+                            <td class="px-4 sm:px-6 py-4 font-medium text-slate-200 whitespace-nowrap">{{ $order->user->username ?? '-' }}</td>
+                            <td class="px-4 sm:px-6 py-4 text-slate-300 whitespace-nowrap">{{ $order->product->name ?? '-' }}</td>
+                            <td class="px-4 sm:px-6 py-4 font-medium text-slate-200 whitespace-nowrap">Rp {{ number_format($order->total_price, 0, ',', '.') }}</td>
+                            <td class="px-4 sm:px-6 py-4 whitespace-nowrap">
                                 @if($order->status === 'pending')
-                                    <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">Pending</span>
+                                    <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">Pending</span>
                                 @elseif($order->status === 'completed')
-                                    <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Completed</span>
+                                    <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Completed</span>
                                 @else
-                                    <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">Cancelled</span>
+                                    <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20">Cancelled</span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4 text-gray-400">{{ $order->created_at->format('d M Y') }}</td>
+                            <td class="px-4 sm:px-6 py-4 text-slate-400 whitespace-nowrap">{{ $order->created_at->format('d M Y') }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-6 py-10 text-center text-gray-400">No orders yet.</td>
+                            <td colspan="6" class="px-6 py-10 text-center text-slate-400">No orders yet.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -241,7 +241,7 @@
                         stepSize: 1,
                         precision: 0
                     },
-                    grid: { color: '#f1f5f9' }
+                    grid: { color: 'rgba(241,245,249,0.05)' }
                 }
             }
         }
